@@ -1,0 +1,56 @@
+CS-01 T3 API inspection
+Python: 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
+CTranslate2: 4.8.2
+
+ctranslate2.models.Whisper.generate docstring:
+generate(self: ctranslate2._ext.Whisper, features: ctranslate2._ext.StorageView, prompts: Union[List[List[str]], List[List[int]]], *, asynchronous: bool = False, beam_size: int = 5, patience: float = 1, num_hypotheses: int = 1, length_penalty: float = 1, repetition_penalty: float = 1, no_repeat_ngram_size: int = 0, max_length: int = 448, return_scores: bool = False, return_logits_vocab: bool = False, return_no_speech_prob: bool = False, max_initial_timestamp_index: int = 50, suppress_blank: bool = True, suppress_tokens: Optional[List[int]] = [-1], sampling_topk: int = 1, sampling_temperature: float = 1) -> Union[List[ctranslate2._ext.WhisperGenerationResult], List[ctranslate2._ext.WhisperGenerationResultAsync]]
+
+
+                 Encodes the input features and generates from the given prompt.
+
+                 Arguments:
+                   features: Mel spectogram of the audio, as a float array with shape
+                     ``[batch_size, n_mels, chunk_length]``. This method also accepts the encoded
+                     features returned by the method :meth:`ctranslate2.models.Whisper.encode`,
+                     which have shape ``[batch_size, chunk_length // 2, d_model]``.
+                   prompts: Batch of initial string tokens or token IDs.
+                   asynchronous: Run the model asynchronously.
+                   beam_size: Beam size (1 for greedy search).
+                   patience: Beam search patience factor, as described in
+                     https://arxiv.org/abs/2204.05424. The decoding will continue until
+                     beam_size*patience hypotheses are finished.
+                   num_hypotheses: Number of hypotheses to return.
+                   length_penalty: Exponential penalty applied to the length during beam search.
+                   repetition_penalty: Penalty applied to the score of previously generated tokens
+                     (set > 1 to penalize).
+                   no_repeat_ngram_size: Prevent repetitions of ngrams with this size
+                     (set 0 to disable).
+                   max_length: Maximum generation length.
+                   return_scores: Include the scores in the output.
+                   return_logits_vocab: Include the log probs in the output
+                   return_no_speech_prob: Include the probability of the no speech token in the
+                     result.
+                   max_initial_timestamp_index: Maximum index of the first predicted timestamp.
+                   suppress_blank: Suppress blank outputs at the beginning of the sampling.
+                   suppress_tokens: List of token IDs to suppress. -1 will suppress a default set
+                     of symbols as defined in the model ``config.json`` file.
+                   sampling_topk: Randomly sample predictions from the top K candidates.
+                   sampling_temperature: Sampling temperature to generate more random samples.
+
+                 Returns:
+                   A list of generation results.
+             
+
+
+inspect.signature(generate):
+
+inspect.signature(generate) unavailable: ValueError: no signature found for builtin <instancemethod generate at 0x0000027BD41B7DC0>
+
+Checks:
+return_logits_vocab mentioned: True
+custom logits processor mentioned in public generate docs: False
+return_scores mentioned: True
+
+Interpretation: return_logits_vocab/return_scores, if exposed by this installed build, are for returning diagnostic outputs. Their presence alone does not mean the Python API lets the caller alter token logits during decoding.
+
+Scope: this is a Windows/CTranslate2 API check only; no Qualcomm/QNN runtime was tested.

@@ -1,0 +1,5 @@
+﻿condition,samples,failed_samples,context_terms_mean,WER_corpus,CER_corpus,mean_elapsed_seconds,median_elapsed_seconds
+T0_baseline,20,0,0.0,0.35192307692307695,0.235,3.838,3.78
+T2_3_terms,20,0,3.0,0.36346153846153845,0.2455,3.693,3.75
+T2_10_terms,20,0,10.0,0.41346153846153844,0.2905,3.949,4.164
+T2_30_terms,20,0,12.0,0.40192307692307694,0.392,4.359,4.172
